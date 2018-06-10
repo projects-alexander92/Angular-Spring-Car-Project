@@ -1,5 +1,5 @@
 # Content
-The finished project is located in the `spring-server directory` just run DemoApplication.class located in 
+The finished project is located in the `spring-server` directory just run DemoApplication.class located in 
 spring server\demo\src\main\java\com\DemoApplication.java
 `angular-source-code` is just the decompiled Angular code.
 # Angular-Spring-Car-Project
