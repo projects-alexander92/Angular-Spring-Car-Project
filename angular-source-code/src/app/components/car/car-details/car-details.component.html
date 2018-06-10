@@ -1,0 +1,61 @@
+<div class="row justify-content-sm-center mt-2">
+  <div class="card col-sm-6 bg-light">
+    <img class="card-img-top" src="{{car?.image}}" alt="image not found" width="150" height="150">
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="averageRating !== 0.0">Rating: {{averageRating | number:'1.2-2'}}</h5>
+      <h5 class="card-title" *ngIf="averageRating === 0.0">Not Rated yet</h5>
+      <p class="card-text">Everything you need to know about this car. Submitted by {{car?.username}}</p>
+    </div>
+    <ul class="car-details-list">
+      <li>Make: {{car?.make}}</li>
+      <li>Model: {{car?.model}}</li>
+      <li>Year: {{car?.year}}</li>
+      <li>Engine: {{car?.engine}}</li>
+      <li>Price: {{car?.price}} BGN</li>
+    </ul>
+    <div class="card-body">
+
+      <!--Rating form-->
+      <form [formGroup]="ratingForm" (submit)="submitRating(ratingForm.value)">
+        <div class="form-group">
+          <label for="rating" *ngIf="userRating == 0.0">Rate it</label>
+          <label for="rating" *ngIf="userRating != 0.0">Change your rating. Previous rating: {{userRating}}</label>
+          <select class="form-control form-control-sm" id="rating" formControlName="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <div class="alert alert-danger"
+               *ngIf="ratingForm.get('rating').invalid && ratingForm.get('rating').touched">
+            Must pick a score
+          </div>
+        </div>
+        <button class="btn btn-dark btn-block" [disabled]="ratingForm.invalid">Rate it!</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!--Display reviews-->
+<div class="row justify-content-sm-center mt-3 mb-3" *ngIf="car?.reviews.length > 0">
+  <a class="btn btn-info btn-block col-sm-6" routerLink="/add-review/{{car?.id}}" role="button">Write a review</a>
+</div>
+<div class="row justify-content-sm-center mt-3 mb-3" *ngIf="car?.reviews.length === 0">
+  <a class="btn btn-info btn-block col-sm-6" routerLink="/add-review/{{car?.id}}" role="button">Be the first one that writes a review</a>
+</div>
+<div class="row justify-content-sm-center" *ngIf="car?.reviews.length > 0">
+  <h3 class="col-sm-12 text-center">Reviews</h3>
+  <div class="col-sm-12 text-center">The
+    <div class="custom"></div>
+    Indicates that this is your comment
+  </div>
+  <ul class="list-group col-sm-12">
+    <li *ngFor="let review of car?.reviews"
+        [ngClass]="currentUser == review?.username ? 'list-group-item custom mt-2' : 'list-group-item mt-2'">Submitted by
+      {{review?.username}} <br> {{review?.data}}
+    </li>
+  </ul>
+</div>

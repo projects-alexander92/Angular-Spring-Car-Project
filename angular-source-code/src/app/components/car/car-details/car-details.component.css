@@ -1,0 +1,22 @@
+div.custom {
+  width: 40px;
+  height: 10px;
+  display: inline-block;
+  background-color: #d1ecf1;
+}
+
+li.custom {
+  background-color: #d1ecf1;
+}
+
+ul.car-details-list {
+  list-style-type: none;
+}
+
+ul.car-details-list > li {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  margin-top: 2px;
+}
+
+

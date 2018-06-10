@@ -1,0 +1,16 @@
+<h3>Your profile page {{username}}</h3>
+<h1 *ngIf="carsArray?.length !== 0">Your cars</h1>
+<span *ngIf="carsArray?.length === 0">You don't have any cars</span>
+<div class="row">
+   <div class="card col-sm-5 bg-light ml-2 mb-2" *ngFor="let car of carsArray">
+    <img class="card-img-top" src="{{car?.image}}" alt="image not found" width="200" height="200">
+    <ul>
+      <li>Make: {{car?.make}}</li>
+      <li>Model: {{car?.model}}</li>
+      <li>Year: {{car?.year}}</li>
+      <li>Engine: {{car?.engine}}</li>
+      <li>Price: {{car?.price}}</li>
+    </ul>
+     <button class="btn btn-block btn-danger" id="{{car?.id}}" (click)="deleteCar(car?.id)">Delete the car</button>
+   </div>
+</div>

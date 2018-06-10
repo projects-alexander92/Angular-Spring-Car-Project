@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light mt-1" style="background-color: #e0e0e0;">
+  <a class="navbar-brand" routerLink="/">Car review</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cars-all">All Cars</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cars-add">Add car</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/stats">Stats</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" *ngIf="isLoggedIn;else notLoggedIn">
+      <a class="btn btn-primary mr-2" routerLink="user-profile/{{username}}">Visit Profile</a>
+      <button class="btn btn-info mr-2" (click)="initLogout($event)">Logout {{username}}</button>
+    </form>
+  </div>
+</nav>
+
+<ng-template #notLoggedIn>
+  <a class="btn btn-success mr-2" routerLink="/register">Register</a>
+  <a class="btn btn-info" routerLink="/login">Login</a>
+</ng-template>

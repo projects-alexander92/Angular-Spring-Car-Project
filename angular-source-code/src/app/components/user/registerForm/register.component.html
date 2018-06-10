@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+  <form [formGroup]="registrationForm" (ngSubmit)="registerUser(registrationForm)" class="col-lg-6 mt-2">
+    <div *ngIf="userAlreadyExists" class="alert alert-danger">
+      User all ready exists!
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        placeholder="Username"
+        formControlName="username"/>
+      <div class="alert alert-danger"
+           *ngIf="registrationForm.get('username').invalid && registrationForm.get('username').touched">
+        {{usernameError}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"
+             class="form-control"
+             id="password"
+             placeholder="Password"
+             formControlName="password"/>
+      <div class="alert alert-danger"
+           *ngIf="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+        {{passwordError}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="repeatPassword">Repeat Password</label>
+      <input type="password"
+             class="form-control"
+             id="repeatPassword"
+             placeholder="Repeat password"
+             formControlName="repeatPassword"/>
+      <div class="alert alert-danger" *ngIf="registrationForm.controls.repeatPassword.errors?.MatchPassword">
+        {{repeatPasswordError}}
+      </div>
+    </div>
+    <button type="submit"
+            class="btn btn-success btn-block"
+            [disabled]="!registrationForm.valid">Register
+    </button>
+  </form>
+</div>

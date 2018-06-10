@@ -1,0 +1,78 @@
+<h1>Add a new car</h1>
+<form [formGroup]="carForm" (ngSubmit)="submitCarForm(carForm.value)">
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="make">Make</label>
+      <input type="text" class="form-control" id="make" placeholder="Enter Make"
+             formControlName="make">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('make').invalid && carForm.get('make').touched">
+        Make cannot be empty
+      </div>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="model">Model</label>
+      <input type="text" class="form-control" id="model" placeholder="Enter Model"
+             formControlName="model">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('model').invalid && carForm.get('model').touched">
+        Make cannot be empty
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="year">Production year</label>
+      <input type="number" class="form-control" id="year" placeholder="Enter Production year"
+      formControlName="year">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('year').invalid && carForm.get('year').touched">
+        Year must be between 1980-{{currentYear}}
+      </div>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="engine">Engine</label>
+      <input type="text" class="form-control" id="engine" placeholder="Enter engine"
+      formControlName="engine">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('engine').invalid && carForm.get('engine').touched">
+        Engine cannot be empty
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" placeholder="Enter Price year"
+      formControlName="price">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('price').invalid && carForm.get('price').touched">
+        Price cannot be negative
+      </div>
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="image">Image URL</label>
+      <input type="text" class="form-control" id="image" placeholder="Enter image URL"
+      formControlName="imageUrl">
+      <div class="alert alert-danger"
+           *ngIf="carForm.get('imageUrl').invalid && carForm.get('imageUrl').touched">
+        Image url must start with http and be fallowed by the full path of the image
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="mileage">Mileage</label>
+    <input type="number" class="form-control" id="mileage" placeholder="Enter mileage"
+    formControlName="mileage">
+    <div class="alert alert-danger"
+         *ngIf="carForm.get('mileage').invalid && carForm.get('mileage').touched">
+      Mileage cannot be negative
+    </div>
+  </div>
+  <button type="submit"
+          class="btn btn-dark btn-block" [disabled]="!carForm.valid">Submit Car
+  </button>
+</form>

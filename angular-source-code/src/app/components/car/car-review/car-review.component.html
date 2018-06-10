@@ -1,0 +1,17 @@
+<div class="row justify-content-sm-center">
+  <form class="col-sm-6" [formGroup]="reviewForm" (submit)="submitReview(reviewForm.value)">
+    <div class="form-group">
+      <label for="review">Add a review</label>
+      <textarea type="text" class="form-control" id="review" placeholder="Review it..." rows="3"
+                formControlName="data"></textarea>
+      <div class="alert alert-danger"
+           *ngIf="reviewForm.get('data').invalid && reviewForm.get('data').touched">
+        Must be at least 10 characters long
+      </div>
+    </div>
+    <button class="btn btn-dark btn-block" [disabled]="reviewForm.invalid">Add a review</button>
+  </form>
+</div>
+<div class="row justify-content-sm-center mt-3">
+  <a class="btn btn-info btn-block col-sm-6" routerLink="/cars-details/{{carId}}">Back to details view</a>
+</div>
